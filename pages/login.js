@@ -7,6 +7,7 @@ import { getError } from "@/utils/error";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
+
 export default function Login() {
   const { data: session } = useSession();
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function Login() {
       if (result.error) {
         toast.error(result.error);
       }
+
     } catch (error) {
       toast.error(getError(error));
     }

@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { toast } from "react-toastify";
+import { engage } from "../api/engage";
 
 export default function ProductDetail(props) {
   const { product } = props;
@@ -43,7 +44,32 @@ export default function ProductDetail(props) {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity: quantity },
     });
-
+    console.log("product",product);
+    const eventData = {
+      channel: "WEB",
+      currency: process.env.CURRENCY,
+      pointOfSale: process.env.POC,
+      language: "EN",
+      page: "products", 
+      product: {
+          name: product.name,
+          type: product.category,
+          item_id: product.slug,
+          productId: product._id,
+          referenceId: "order_"+product.name,
+          orderedAt: new Date().toISOString(),
+          quantity: 1,
+          price: product.price,
+          currency: process.env.CURRENCY,
+          originalPrice: product.price,
+          originalCurrencyCode: process.env.CURRENCY,
+      }
+    };
+    const extensionData = {
+      customKey: "Test"
+    };
+    await engage.event("ADD", eventData, extensionData);
+    alert("added");
     router.push("/cart");
   };
 

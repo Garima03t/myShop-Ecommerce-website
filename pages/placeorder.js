@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { engage } from "./api/engage";
 
 export default function PlaceOrder() {
   const router = useRouter();
@@ -37,9 +38,25 @@ export default function PlaceOrder() {
 
   const [loading, setLoading] = useState(false);
 
-  const placeOrderHandler = async () => {
+  const placeOrderHandler = async (item) => {
     try {
       setLoading(true);
+      console.log(item[0].name);
+     console.log(item[0]);
+      const eventData = {
+        channel: "WEB",
+        currency: process.env.CURRENCY,
+        pointOfSale: process.env.POC,
+        language: "EN",
+        page: "Checkout",
+        reference_id: "order_"+item[0].name,
+        status: "PURCHASED"
+      };
+      const extensionData = {
+        customKey: "customValue"
+      };
+      await engage.event("CHECKOUT", eventData, extensionData);
+      alert("checkout");
       const { data } = await axios.post("/api/orders", {
         orderItems: cartItems,
         shippingAddress,
@@ -60,7 +77,7 @@ export default function PlaceOrder() {
         })
       );
 
-      setLoading(false);
+      setLoading(false);     
       router.push(`/order/${data._id}`);
     } catch (error) {
       setLoading(false);
@@ -171,7 +188,7 @@ export default function PlaceOrder() {
               <li>
                 <button
                   disabled={loading}
-                  onClick={placeOrderHandler}
+                  onClick={()=>placeOrderHandler(cartItems)}
                   className="primary-button w-full"
                 >
                   {loading ? "Loading..." : "Place Order"}

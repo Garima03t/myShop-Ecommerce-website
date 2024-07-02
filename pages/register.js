@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { engage } from "./api/engage";
 
 export default function Register() {
   const { data: session } = useSession();
@@ -41,7 +42,29 @@ export default function Register() {
         email,
         password,
       });
+      const eventData = {
+        channel: "WEB",
+        currency: "USD",
+        pointOfSale: "Test_CDP_NEXT",
+        language: "EN",
+        page: "Login",
+        name,
+        email,
+        identifiers: [
+            {
+                id: email,
+                provider: "BXLP"
+            }
+        ]
+      };
 
+      const extensionData = {
+          DataBaseID: "123"
+      };
+      
+      // Send IDENTITY event to Sitecore CDP
+      await engage.identity(eventData, extensionData);
+      alert("Your Guest is created"+email);
       if (result.error) {
         toast.error(result.error);
       }

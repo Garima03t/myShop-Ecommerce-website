@@ -9,11 +9,32 @@ import { useContext } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { toast } from "react-toastify";
+import { engage } from "./api/engage";
+import { useEffect } from "react";
 
 export default function Home({ featuredProducts, products }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-
+  useEffect(() => {
+    if (engage !== undefined) {
+      sendPageViewEvent();
+    };
+  }, []);
+  const sendPageViewEvent = async () => {
+    console.log("test");
+    const response = await engage.pageView({
+      channel: "WEB",
+      currency: "USD"
+    });
+    
+    // For testing and debugging purposes only
+    if (response) {
+      console.log(response);
+     console.log("Copy-paste the following line into Sitecore CDP > Guests > Search field: in if ");
+      console.log("bid:", engage.getBrowserId());
+    }
+   
+  };
   const addToCartHandler = async (product) => {
     const existItem = cart.cartItems.find((item) => item.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -32,7 +53,7 @@ export default function Home({ featuredProducts, products }) {
 
     toast.success("Product added to the cart");
   };
-
+  
   return (
     <Layout title="MyShop">
       <div className="z-0">

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { engage } from "./api/engage";
 
 function Cart() {
   const router = useRouter();
@@ -38,6 +39,26 @@ function Cart() {
     toast.success("Product updated in the cart");
   };
 
+  const handleClickConfirmEvent = async (item) => {
+    console.log(item[0].slug);
+    console.log(item[0]);
+    const eventData = {
+      channel: "WEB",
+      currency: process.env.CURRENCY,
+      pointOfSale: process.env.POC,
+      language: "EN",
+      page: "checkout",
+      product: [
+        { item_id: item[0].slug}
+      ]
+    };
+    const extensionData = {
+      customKey: "Test"
+    };
+    await engage.event("CONFIRM", eventData, extensionData);
+    alert("Confirm");
+    router.push("login?redirect=/shipping")
+};
   return (
     <Layout title="Shopping Cart">
       <h1 className="mb-4 text-xl">Shopping Cart</h1>
@@ -115,7 +136,7 @@ function Cart() {
               </li>
               <li>
                 <button
-                  onClick={() => router.push("login?redirect=/shipping")}
+                  onClick={() => handleClickConfirmEvent(cartItems)}
                   className="primary-button w-full"
                 >
                   Check Out
