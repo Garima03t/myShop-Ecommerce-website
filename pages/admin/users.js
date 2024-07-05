@@ -64,8 +64,11 @@ export default function Users() {
   }, [successDelete]);
 
   const deletHandler = async (userId) => {
-    if (!window.confirm("Are you sure?")) {
-      return;
+    if (typeof window !== 'undefined') {
+      if (!window.confirm("Are you sure?")) {
+        return;
+      }
+      // The rest of your client-side code
     }
     try {
       dispatch({ type: "DELETE_REQUEST" });
