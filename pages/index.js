@@ -23,13 +23,14 @@ export default function Home({ featuredProducts, products }) {
   const sendPageViewEvent = async () => {
     const response = await engage.pageView({
       channel: "WEB",
-      currency: "USD"
+      currency: "USD",
+      page: "vercelhome",
     });   
-    // For testing and debugging purposes only
+    //For testing and debugging purposes only
     if (response) {
-    //   console.log(response);
-    //  console.log("Copy-paste the following line into Sitecore CDP > Guests > Search field: in if ");
-    //   console.log("bid:", engage.getBrowserId());
+     console.log(response);
+     console.log("Copy-paste the following line into Sitecore CDP > Guests > Search field: in if ");
+       console.log("bid:", engage.getBrowserId());
     }
    
   };
