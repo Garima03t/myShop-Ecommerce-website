@@ -64,12 +64,12 @@ export default function Users() {
   }, [successDelete]);
 
   const deletHandler = async (userId) => {
-    if (typeof window !== 'undefined') {
+    useEffect(() => {
       if (!window.confirm("Are you sure?")) {
         return;
       }
       // The rest of your client-side code
-    }
+    }, []);
     try {
       dispatch({ type: "DELETE_REQUEST" });
       await axios.delete(`/api/admin/users/${userId}`);

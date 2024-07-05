@@ -79,10 +79,12 @@ export default function Products() {
   }, [successDelete]);
 
   const createHandler = async () => {
-    if (typeof window !== 'undefined') {
-    if (!window.confirm("Are you sure")) {
-      return;
-    }}
+    useEffect(() => {
+      if (!window.confirm("Are you sure?")) {
+        return;
+      }
+      // The rest of your client-side code
+    }, []);
     try {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(`/api/admin/products`);
@@ -96,10 +98,13 @@ export default function Products() {
   };
 
   const deletHandler = async (productId) => {
-    if (typeof window !== 'undefined') {
-    if (!window.confirm("Are you sure?")) {
-      return;
-    }}
+    
+    useEffect(() => {
+      if (!window.confirm("Are you sure?")) {
+        return;
+      }
+      // The rest of your client-side code
+    }, []);
     try {
       dispatch({ type: "DELETE_REQUEST" });
       await axios.delete(`/api/admin/products/${productId}`);
