@@ -64,12 +64,9 @@ export default function Users() {
   }, [successDelete]);
 
   const deletHandler = async (userId) => {
-    useEffect(() => {
-      if (!window.confirm("Are you sure?")) {
-        return;
-      }
-      // The rest of your client-side code
-    }, []);
+    if (!window.confirm("Are you sure?")) {
+      return;
+    }
     try {
       dispatch({ type: "DELETE_REQUEST" });
       await axios.delete(`/api/admin/users/${userId}`);
