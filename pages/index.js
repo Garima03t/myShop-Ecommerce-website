@@ -80,7 +80,7 @@ export default function Home({ featuredProducts, products }) {
     </Layout>
   );
 }
-
+export const maxDuration = 50;
 export async function getServerSideProps() {
   await db.connect();
   const products = await Product.find().lean();
