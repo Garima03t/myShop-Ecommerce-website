@@ -14,6 +14,11 @@ const loadEngage = async () => {
     webPersonalization: false /* boolean or object. See Settings object for all options. Default: false */
   });
 };
+if (typeof window !== "undefined") {
+  // Initialize Engage SDK here
+  loadEngage();
+}
 
-loadEngage();
+
+
 export { engage };
