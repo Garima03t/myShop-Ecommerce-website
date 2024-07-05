@@ -21,17 +21,15 @@ export default function Home({ featuredProducts, products }) {
     };
   }, []);
   const sendPageViewEvent = async () => {
-    console.log("test");
     const response = await engage.pageView({
       channel: "WEB",
       currency: "USD"
-    });
-    
+    });   
     // For testing and debugging purposes only
     if (response) {
-      console.log(response);
-     console.log("Copy-paste the following line into Sitecore CDP > Guests > Search field: in if ");
-      console.log("bid:", engage.getBrowserId());
+    //   console.log(response);
+    //  console.log("Copy-paste the following line into Sitecore CDP > Guests > Search field: in if ");
+    //   console.log("bid:", engage.getBrowserId());
     }
    
   };
