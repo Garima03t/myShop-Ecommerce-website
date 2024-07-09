@@ -1,9 +1,6 @@
 {
-    "functions": {     
-      "pages/api/*.js": {
-        "maxDuration": 50
-      },
-      "pages/*.js": {
+    "functions": { 
+      "pages/**/*": {
         "maxDuration": 50
       }
     }
