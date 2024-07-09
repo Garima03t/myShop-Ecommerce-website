@@ -82,16 +82,16 @@ export default function Home({ featuredProducts, products }) {
   );
 }
 export const maxDuration  = 50;
-// export async function getServerSideProps() {
-//   await db.connect();
-//   const products = await Product.find().lean();
-//   const featuredProducts = products.filter(
-//     (product) => product.isFeatured === true
-//   );
-//   return {
-//     props: {
-//       featuredProducts: featuredProducts.map(db.convertDocToObj),
-//       products: products.map(db.convertDocToObj),
-//     },
-//   };
-// }
+export async function getServerSideProps() {
+  await db.connect();
+  const products = await Product.find().lean();
+  const featuredProducts = products.filter(
+    (product) => product.isFeatured === true
+  );
+  return {
+    props: {
+      featuredProducts: featuredProducts.map(db.convertDocToObj),
+      products: products.map(db.convertDocToObj),
+    },
+  };
+}
