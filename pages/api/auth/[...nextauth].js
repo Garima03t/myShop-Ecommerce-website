@@ -4,6 +4,7 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcryptjs from "bcryptjs";
 
+export const maxDuration = 50; // This function can run for a maximum of 50 seconds
 export default NextAuth({
   session: {
     strategy: "jwt",
