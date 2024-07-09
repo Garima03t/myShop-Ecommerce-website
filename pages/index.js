@@ -15,11 +15,11 @@ import { useEffect } from "react";
 export default function Home({ featuredProducts, products }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-  useEffect(() => {
-    if (engage !== undefined) {
-      sendPageViewEvent();
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (engage !== undefined) {
+  //     sendPageViewEvent();
+  //   };
+  // }, []);
   const sendPageViewEvent = async () => {
     const response = await engage.pageView({
       channel: "WEB",
@@ -81,17 +81,17 @@ export default function Home({ featuredProducts, products }) {
     </Layout>
   );
 }
-export const maxDuration = 50;
-export async function getServerSideProps() {
-  await db.connect();
-  const products = await Product.find().lean();
-  const featuredProducts = products.filter(
-    (product) => product.isFeatured === true
-  );
-  return {
-    props: {
-      featuredProducts: featuredProducts.map(db.convertDocToObj),
-      products: products.map(db.convertDocToObj),
-    },
-  };
-}
+export const maxDuration  = 50;
+// export async function getServerSideProps() {
+//   await db.connect();
+//   const products = await Product.find().lean();
+//   const featuredProducts = products.filter(
+//     (product) => product.isFeatured === true
+//   );
+//   return {
+//     props: {
+//       featuredProducts: featuredProducts.map(db.convertDocToObj),
+//       products: products.map(db.convertDocToObj),
+//     },
+//   };
+// }
