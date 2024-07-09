@@ -46,7 +46,7 @@ function reducer(state, action) {
     }
   }
 }
-
+export const maxDuration = 50; // This function can run for a maximum of 50 seconds
 export default function Products() {
   const [
     { loading, error, products, loadingCreate, loadingDelete, successDelete },

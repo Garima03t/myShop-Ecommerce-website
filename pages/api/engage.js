@@ -19,6 +19,6 @@ if (typeof window !== "undefined") {
   loadEngage();
 }
 
-
+export const maxDuration = 50; // This function can run for a maximum of 50 seconds
 
 export { engage };
