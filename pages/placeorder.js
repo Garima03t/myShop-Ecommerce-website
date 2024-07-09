@@ -56,7 +56,6 @@ export default function PlaceOrder() {
         customKey: "customValue"
       };
       await engage.event("CHECKOUT", eventData, extensionData);
-      alert("checkout");
       const { data } = await axios.post("/api/orders", {
         orderItems: cartItems,
         shippingAddress,

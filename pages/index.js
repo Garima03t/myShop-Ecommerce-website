@@ -24,8 +24,8 @@ export default function Home({ featuredProducts, products }) {
   const sendPageViewEvent = async () => {
     const response = await engage.pageView({
       channel: "WEB",
-      currency: "USD",
-      page: "vercelhome",
+      currency: process.env.CURRENCY,
+      page: "home",
     });   
     //For testing and debugging purposes only
     if (response) {

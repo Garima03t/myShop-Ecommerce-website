@@ -69,7 +69,6 @@ export default function ProductDetail(props) {
       customKey: "Test"
     };
     await engage.event("ADD", eventData, extensionData);
-    alert("added");
     router.push("/cart");
   };
 

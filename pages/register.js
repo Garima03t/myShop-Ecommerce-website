@@ -45,8 +45,8 @@ export default function Register() {
       });
       const eventData = {
         channel: "WEB",
-        currency: "USD",
-        pointOfSale: "Test_CDP_NEXT",
+        currency: process.env.CURRENCY,
+        pointOfSale: process.env.POC,
         language: "EN",
         page: "Login",
         name,
@@ -65,7 +65,6 @@ export default function Register() {
       
       // Send IDENTITY event to Sitecore CDP
       await engage.identity(eventData, extensionData);
-      alert("Your Guest is created"+email);
       if (result.error) {
         toast.error(result.error);
       }

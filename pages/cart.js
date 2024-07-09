@@ -56,7 +56,6 @@ function Cart() {
       customKey: "Test"
     };
     await engage.event("CONFIRM", eventData, extensionData);
-    alert("Confirm");
     router.push("login?redirect=/shipping")
 };
   return (
