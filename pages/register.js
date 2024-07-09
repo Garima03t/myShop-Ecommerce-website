@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { engage } from "./api/engage";
 
+export const maxDuration = 50; // This function can run for a maximum of 50 seconds
 export default function Register() {
   const { data: session } = useSession();
   const router = useRouter();
