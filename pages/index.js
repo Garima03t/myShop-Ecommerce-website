@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { engage } from "./api/engage";
 import { useEffect } from "react";
 
+export const maxDuration = 50; // This function can run for a maximum of 50 seconds
 export default function Home({ featuredProducts, products }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -81,7 +82,7 @@ export default function Home({ featuredProducts, products }) {
     </Layout>
   );
 }
-export const maxDuration  = 50;
+
 export async function getServerSideProps() {
   await db.connect();
   const products = await Product.find().lean();
