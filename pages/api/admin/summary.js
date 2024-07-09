@@ -6,8 +6,9 @@ import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
   const session = await getSession({ req });
+  console.log("session"+ session);
   if (!session || (session && !session.user.isAdmin)) {
-    console.log(session);
+   
     res.status(401).send("Signin required");
   }
 
