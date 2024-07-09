@@ -54,45 +54,44 @@ export default function Home({ featuredProducts, products }) {
   };
   
   return (
-    // <Layout title="MyShop">
-    //   <div className="z-0">
-    //     <Carousel showThumbs={false} autoPlay infiniteLoop>
-    //       {featuredProducts.map((product) => (
-    //         <div key={product._id}>
-    //           <Link href={`/product/${product.slug}`} passHref>
-    //             <div className="flex">
-    //               <img src={product.banner} alt={product.name} />
-    //             </div>
-    //           </Link>
-    //         </div>
-    //       ))}
-    //     </Carousel>
-    //   </div>
-    //   <h1 className="h2 my-4">Latest Products</h1>
-    //   <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-    //     {products.map((product) => (
-    //       <ProductItem
-    //         product={product}
-    //         key={product.slug}
-    //         addToCartHandler={addToCartHandler}
-    //       />
-    //     ))}
-    //   </div>
-    // </Layout>
-    <div>Test</div>
+    <Layout title="MyShop">
+      <div className="z-0">
+        <Carousel showThumbs={false} autoPlay infiniteLoop>
+          {featuredProducts.map((product) => (
+            <div key={product._id}>
+              <Link href={`/product/${product.slug}`} passHref>
+                <div className="flex">
+                  <img src={product.banner} alt={product.name} />
+                </div>
+              </Link>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+      <h1 className="h2 my-4">Latest Products</h1>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => (
+          <ProductItem
+            product={product}
+            key={product.slug}
+            addToCartHandler={addToCartHandler}
+          />
+        ))}
+      </div>
+    </Layout>
   );
 }
 export const maxDuration  = 50;
-// export async function getServerSideProps() {
-//   // await db.connect();
-//   // const products = await Product.find().lean();
-//   // const featuredProducts = products.filter(
-//   //   (product) => product.isFeatured === true
-//   // );
-//   // return {
-//   //   props: {
-//   //     featuredProducts: featuredProducts.map(db.convertDocToObj),
-//   //     products: products.map(db.convertDocToObj),
-//   //   },
-//   // };
-// }
+export async function getServerSideProps() {
+  await db.connect();
+  const products = await Product.find().lean();
+  const featuredProducts = products.filter(
+    (product) => product.isFeatured === true
+  );
+  return {
+    props: {
+      featuredProducts: featuredProducts.map(db.convertDocToObj),
+      products: products.map(db.convertDocToObj),
+    },
+  };
+}
