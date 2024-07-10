@@ -21,7 +21,7 @@ const handler = async (req, res) => {
       status: "",
       email_address: "",
     },
-    user: ObjectId("668e5da9c0380d3a92d5c57f"),
+    user: "668e5da9c0380d3a92d5c57f",
   });
   const order = await newOrder.save();
   await db.disconnect();
