@@ -89,6 +89,7 @@ export async function getServerSideProps() {
   const featuredProducts = products.filter(
     (product) => product.isFeatured === true
   );
+  await db.disconnect();
   return {
     props: {
       featuredProducts: featuredProducts.map(db.convertDocToObj),

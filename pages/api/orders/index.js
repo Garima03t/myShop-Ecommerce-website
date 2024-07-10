@@ -11,7 +11,7 @@ const handler = async (req, res) => {
   await db.connect();
   const newOrder = new Order({
     ...req.body,
-    isPaid: false,
+    isPaid: true,
     paidAt: Date.now(),
     paymentResult: {
       id: "",

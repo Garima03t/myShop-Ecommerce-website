@@ -41,8 +41,6 @@ export default function PlaceOrder() {
   const placeOrderHandler = async (item) => {
     try {
       setLoading(true);
-      console.log(item[0].name);
-     console.log(item[0]);
       const eventData = {
         channel: "WEB",
         currency: process.env.CURRENCY,
