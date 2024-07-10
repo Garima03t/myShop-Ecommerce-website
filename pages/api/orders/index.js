@@ -3,11 +3,12 @@ import db from "@/utils/db";
 import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
+  console.log("orderhit");
   const session = await getSession({ req });
   console.log("session",session);
-  if (!session) {
-    res.status(401).send("Signin required");
-  }
+  // if (!session) {
+  //   res.status(401).send("Signin required");
+  // }
   const { user } = session;
   await db.connect();
   console.log("session",user);
