@@ -56,6 +56,7 @@ function Cart() {
       customKey: "Test"
     };
     await engage.event("CONFIRM", eventData, extensionData);
+    toast.success("Product is confirmed");
     router.push("login?redirect=/shipping")
 };
   return (

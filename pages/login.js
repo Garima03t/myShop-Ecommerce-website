@@ -33,9 +33,12 @@ export default function Login() {
         email,
         password,
       });
-
+       
       if (result.error) {
         toast.error(result.error);
+      }
+      else{
+        toast.success("Welcome !!!");
       }
 
     } catch (error) {

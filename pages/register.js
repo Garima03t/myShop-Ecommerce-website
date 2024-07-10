@@ -68,6 +68,9 @@ export default function Register() {
       if (result.error) {
         toast.error(result.error);
       }
+      else{
+        toast.success("Welcome !!!");
+      }
     } catch (error) {
       toast.error(getError(error));
     }

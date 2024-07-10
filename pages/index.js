@@ -52,6 +52,30 @@ export default function Home({ featuredProducts, products }) {
     });
 
     toast.success("Product added to the cart");
+    const eventData = {
+      channel: "WEB",
+      currency: process.env.CURRENCY,
+      pointOfSale: process.env.POC,
+      language: "EN",
+      page: "products", 
+      product: {
+          name: product.name,
+          type: product.category,
+          item_id: product.slug,
+          productId: product._id,
+          referenceId: "order_"+product.name,
+          orderedAt: new Date().toISOString(),
+          quantity: 1,
+          price: product.price,
+          currency: process.env.CURRENCY,
+          originalPrice: product.price,
+          originalCurrencyCode: process.env.CURRENCY,
+      }
+    };
+    const extensionData = {
+      customKey: "Test"
+    };
+    await engage.event("ADD", eventData, extensionData);
   };
   
   return (

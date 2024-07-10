@@ -44,7 +44,7 @@ export default function ProductDetail(props) {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity: quantity },
     });
-    console.log("product",product);
+    toast.success("Product added to the cart");
     const eventData = {
       channel: "WEB",
       currency: process.env.CURRENCY,
@@ -69,6 +69,7 @@ export default function ProductDetail(props) {
       customKey: "Test"
     };
     await engage.event("ADD", eventData, extensionData);
+    
     router.push("/cart");
   };
 
