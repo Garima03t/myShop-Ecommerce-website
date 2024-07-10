@@ -27,6 +27,7 @@ export default function Login() {
   } = useForm();
 
   const submitHandler = async ({ email, password }) => {
+  
     try {
       const result = await signIn("credentials", {
         redirect: false,
@@ -38,7 +39,7 @@ export default function Login() {
         toast.error(result.error);
       }
       else{
-        toast.success("Welcome !!!");
+        toast.success("Welcome !!! ");
       }
 
     } catch (error) {

@@ -30,6 +30,7 @@ export default function Register() {
   } = useForm();
 
   const submitHandler = async ({ name, email, password }) => {
+    toast.success("User is creating!!!");
     try {
       await axios.post("/api/auth/signup", {
         redirect: false,
@@ -69,7 +70,7 @@ export default function Register() {
         toast.error(result.error);
       }
       else{
-        toast.success("Welcome !!!");
+        toast.success("Welcome !!! User created");
       }
     } catch (error) {
       toast.error(getError(error));
