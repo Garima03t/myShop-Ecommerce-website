@@ -41,19 +41,19 @@ export default function PlaceOrder() {
   const placeOrderHandler = async (item) => {
     try {
       setLoading(true);
-      // const eventData = {
-      //   channel: "WEB",
-      //   currency: process.env.CURRENCY,
-      //   pointOfSale: process.env.POC,
-      //   language: "EN",
-      //   page: "Checkout",
-      //   reference_id: "order_"+item[0].name,
-      //   status: "PURCHASED"
-      // };
-      // const extensionData = {
-      //   customKey: "customValue"
-      // };
-      // await engage.event("CHECKOUT", eventData, extensionData);
+      const eventData = {
+        channel: "WEB",
+        currency: process.env.CURRENCY,
+        pointOfSale: process.env.POC,
+        language: "EN",
+        page: "Checkout",
+        reference_id: "order_"+item[0].name,
+        status: "PURCHASED"
+      };
+      const extensionData = {
+        customKey: "customValue"
+      };
+      await engage.event("CHECKOUT", eventData, extensionData);
       const { data } = await axios.post("/api/orders", {
         orderItems: cartItems,
         shippingAddress,

@@ -4,14 +4,14 @@ import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
   console.log("orderhit");
-  const session = await getSession({ req });
-  console.log("session",session);
+  //const session = await getSession({ req });
+  //console.log("session",session);
   // if (!session) {
   //   res.status(401).send("Signin required");
   // }
-  const { user } = session;
+ // const { user } = session;
   await db.connect();
-  console.log("session",user);
+  //console.log("session",user);
   const newOrder = new Order({
     ...req.body,
     isPaid: true,
@@ -21,7 +21,7 @@ const handler = async (req, res) => {
       status: "",
       email_address: "",
     },
-    user: user._id,
+    user: ObjectId("668e5da9c0380d3a92d5c57f"),
   });
   const order = await newOrder.save();
   await db.disconnect();
