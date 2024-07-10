@@ -1,9 +1,10 @@
 import Product from "@/models/Product";
 import db from "@/utils/db";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]"; 
 
 const handler = async (req, res) => {
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
   if (!session || (session && !session.user.isAdmin)) {
     res.status(401).send("Admin signin required");
   }

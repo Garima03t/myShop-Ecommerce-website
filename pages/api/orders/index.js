@@ -4,9 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]"; // Adjust the path if necessary
 
 const handler = async (req, res) => {
-  console.log("orderhit");
   const session = await getServerSession(req, res, authOptions);
-  console.log("session", session);
   if (!session) {
     return res.status(401).send("Signin required");
   }
@@ -24,7 +22,7 @@ const handler = async (req, res) => {
       status: "",
       email_address: "",
     },
-    user: user.id, // Ensure user.id is the correct field
+    user: user._id, // Ensure user.id is the correct field
   });
   
   const order = await newOrder.save();

@@ -1,7 +1,8 @@
 import bcryptjs from "bcryptjs";
 import User from "@/models/User";
 import db from "@/utils/db";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]"; // Adjust the path if necessary
 
 const handler = async (req, res) => {
   if (req.method != "PUT") {
@@ -10,7 +11,7 @@ const handler = async (req, res) => {
     });
   }
 
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
   if (!session) {
     res.status(401).send("Signin required");
   }
