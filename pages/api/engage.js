@@ -14,10 +14,10 @@ const loadEngage = async () => {
     webPersonalization: false /* boolean or object. See Settings object for all options. Default: false */
   });
 };
-if (typeof window !== "undefined") {
+
   // Initialize Engage SDK here
   loadEngage();
-}
+
 
 export const maxDuration = 50; // This function can run for a maximum of 50 seconds
 
