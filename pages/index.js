@@ -29,8 +29,6 @@ export default function Home({ featuredProducts, products }) {
     });   
     //For testing and debugging purposes only
     if (response) {
-     console.log(response);
-     console.log("Copy-paste the following line into Sitecore CDP > Guests > Search field: in if ");
        console.log("bid:", engage.getBrowserId());
     }
    
