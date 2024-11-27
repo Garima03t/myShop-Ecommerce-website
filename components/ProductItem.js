@@ -32,7 +32,7 @@ export default function ProductItem({ product, addToCartHandler }) {
           value={product.rating}
           edit={false}
         />
-        <p>{product.price}₹</p>
+        <p>{product.price}$</p>
         <button
           className="primary-button"
           type="button"

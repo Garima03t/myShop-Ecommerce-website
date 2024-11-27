@@ -7,6 +7,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { engage } from "./api/engage";
 
 export default function Profile() {
   const { data: session } = useSession();
@@ -22,7 +23,28 @@ export default function Profile() {
   useEffect(() => {
     setValue("name", session.user.name);
     setValue("email", session.user.email);
+    alert("dev1");
+    if (engage !== undefined) {
+      alert("dev2");
+      sendPageViewEvent();
+    };
   }, []);
+
+ 
+  const sendPageViewEvent = async () => {
+    alert("dev3");
+    const response = await engage.pageView({
+      channel: "WEB",
+      currency: process.env.CURRENCY,
+      page: "profile",
+    });   
+    //For testing and debugging purposes only
+    if (response) {
+      alert("dev4");
+       console.log("bid:", engage.getBrowserId());
+    }
+   
+  };
 
   const submitHandler = async ({ name, email, password }) => {
     try {

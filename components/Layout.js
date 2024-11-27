@@ -70,7 +70,7 @@ function Layout({ title, children }) {
               </Link>
             </div>
 
-            <form
+            {/* <form
               className="mx-auto  hidden w-full justify-center md:flex"
               onSubmit={submitHandler}
             >
@@ -98,7 +98,7 @@ function Layout({ title, children }) {
                   />
                 </svg>
               </button>
-            </form>
+            </form> */}
 
             <div className="hidden md:flex">
               {status === "loading" ? (
@@ -178,7 +178,7 @@ function Layout({ title, children }) {
               toggle === false ? "hidden" : ""
             } md:hidden flex flex-col my-3 mx-3 p-2 bg-gray-50 rounded-md  shadow-md`}
           >
-            <form
+            {/* <form
               className="py-4 px-4 text-sm mx-auto flex"
               onSubmit={submitHandler}
             >
@@ -206,7 +206,7 @@ function Layout({ title, children }) {
                   />
                 </svg>
               </button>
-            </form>
+            </form> */}
 
             <div className="flex flex-col space-y-3 mx-auto">
               <div>

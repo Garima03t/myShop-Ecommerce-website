@@ -7,7 +7,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { toast } from "react-toastify";
 import { engage } from "../api/engage";
@@ -19,6 +19,12 @@ export default function ProductDetail(props) {
 
   const router = useRouter();
 
+  useEffect(() => {
+   
+    if (engage !== undefined) {
+      sendPageViewEvent();
+    };
+  }, []);
   if (!product) {
     return (
       <Layout title="Product Not found">
@@ -26,6 +32,19 @@ export default function ProductDetail(props) {
       </Layout>
     );
   }
+
+  const sendPageViewEvent = async () => {
+    const response = await engage.pageView({
+      channel: "WEB",
+      currency: process.env.CURRENCY,
+      page: "product page -" + product.name,
+    });   
+    //For testing and debugging purposes only
+    if (response) {
+       console.log("bid:", engage.getBrowserId());
+    }
+   
+  };
 
   const addToCartHandler = async () => {
     const existItem = state.cart.cartItems.find(
@@ -138,7 +157,7 @@ export default function ProductDetail(props) {
           <div className="card p-5 my-2">
             <div className="mb-2 flex  justify-between">
               <div>Price</div>
-              <div>{product.price} ₹</div>
+              <div>$ {product.price}</div>
             </div>
             <div className="mb-2 flex justify-between">
               <div>Status</div>
